@@ -6,22 +6,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
-import { useAuth } from "@/contexts/auth-context"
-import { signIn } from "@/lib/auth/client"
+
+import { signIn, useSession } from "@/lib/auth/client"
 import { useRouter } from "next/navigation"
 import { type FormEvent, useEffect, useState } from "react"
 
 export default function LoginPage() {
-  const { isLoggedIn } = useAuth()
+  const { data: session } = useSession()
   const router = useRouter()
 
   const [isLoading, setIsLoading] = useState(false)
 
+  /*
+  // Client-side redirect if already logged in
   useEffect(() => {
-    if (isLoggedIn) {
+    if (session) {
       router.push("/")
     }
-  }, [isLoggedIn, router])
+  }, [session, router])
+  */
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -34,12 +37,12 @@ export default function LoginPage() {
       email,
       password,
       fetchOptions: {
-        onResponse: () => setIsLoading(false),
         onSuccess: () => {
           router.push("/")
           router.refresh()
         },
         onError: (ctx) => {
+          setIsLoading(false)
           alert(ctx.error.message)
         }
       }
@@ -87,7 +90,7 @@ export default function LoginPage() {
 
             <div className="mt-6 text-center text-sm text-muted-foreground">
               Don&apos;t have an account?{" "}
-              <Link href="/login" className="font-medium text-foreground underline underline-offset-4 hover:text-primary">
+              <Link href="/register" className="font-medium text-foreground underline underline-offset-4 hover:text-primary">
                 Register
               </Link>
             </div>

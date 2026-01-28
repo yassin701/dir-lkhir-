@@ -5,7 +5,7 @@ import { HelpRequestCard } from "@/components/ui/help-request-card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { useAuth } from "@/contexts/auth-context"
+import { useSession } from "@/lib/auth/client"
 import { useRouter } from "next/navigation"
 
 const helpRequests = [
@@ -42,8 +42,9 @@ const helpRequests = [
 ]
 
 export default function HomePage() {
-  const { isLoggedIn } = useAuth()
+  const { data: session } = useSession()
   const router = useRouter()
+  const isLoggedIn = !!session
 
   const handleCreateClick = () => {
     if (!isLoggedIn) {

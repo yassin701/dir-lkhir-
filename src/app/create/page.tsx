@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useAuth } from "@/contexts/auth-context"
+import { useSession } from "@/lib/auth/client"
 import { useRouter } from "next/navigation"
 import { useEffect, type FormEvent } from "react"
 
@@ -25,19 +25,24 @@ const cities = [
 ]
 
 export default function CreateHelpRequestPage() {
-  const { isLoggedIn } = useAuth()
+  const { data: session, isPending } = useSession() // Changed from useAuth to useSession
   const router = useRouter()
+  const isLoggedIn = !!session // Derived from session status
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isPending && !isLoggedIn) {
       router.push("/login")
     }
-  }, [isLoggedIn, router])
+  }, [isLoggedIn, isPending, router])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     alert("Help request submitted successfully!")
     router.push("/")
+  }
+
+  if (isPending) {
+    return <div className="flex min-h-screen items-center justify-center">Loading...</div>
   }
 
   if (!isLoggedIn) {

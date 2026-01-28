@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { MapPin } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
+import { useSession } from "@/lib/auth/client"
 import { useRouter } from "next/navigation"
 
 interface HelpRequestCardProps {
@@ -15,8 +15,9 @@ interface HelpRequestCardProps {
 }
 
 export function HelpRequestCard({ title, city, description, status = "Open" }: HelpRequestCardProps) {
-  const { isLoggedIn } = useAuth()
+  const { data: session } = useSession()
   const router = useRouter()
+  const isLoggedIn = !!session
 
   const handleHelpClick = () => {
     if (!isLoggedIn) {
@@ -51,8 +52,8 @@ export function HelpRequestCard({ title, city, description, status = "Open" }: H
           </Button>
         ) : (
           <>
-            <Button 
-              className="w-full" 
+            <Button
+              className="w-full"
               variant="secondary"
               onClick={handleHelpClick}
             >

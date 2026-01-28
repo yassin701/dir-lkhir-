@@ -5,11 +5,25 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, Heart, LogOut } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
+import { useSession, signOut } from "@/lib/auth/client"
+import { useRouter } from "next/navigation"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { isLoggedIn, logout } = useAuth()
+  const { data: session } = useSession()
+  const router = useRouter()
+  const isLoggedIn = !!session
+
+  const handleLogout = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/")
+          router.refresh()
+        }
+      }
+    })
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
@@ -28,7 +42,7 @@ export function Navbar() {
               Home
             </Button>
           </Link>
-          
+
           {isLoggedIn && (
             <Link href="/create">
               <Button variant="ghost" className="text-sm font-medium">
@@ -36,12 +50,12 @@ export function Navbar() {
               </Button>
             </Link>
           )}
-          
+
           {isLoggedIn ? (
-            <Button 
-              variant="ghost" 
+            <Button
+              variant="ghost"
               className="gap-2 text-sm font-medium"
-              onClick={logout}
+              onClick={handleLogout}
             >
               <LogOut className="h-4 w-4" />
               Logout
@@ -77,7 +91,7 @@ export function Navbar() {
                     Home
                   </Button>
                 </Link>
-                
+
                 {isLoggedIn && (
                   <Link href="/create" onClick={() => setIsOpen(false)}>
                     <Button variant="ghost" className="w-full justify-start text-base">
@@ -85,13 +99,13 @@ export function Navbar() {
                     </Button>
                   </Link>
                 )}
-                
+
                 {isLoggedIn ? (
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className="w-full justify-start gap-2 text-base"
                     onClick={() => {
-                      logout()
+                      handleLogout()
                       setIsOpen(false)
                     }}
                   >

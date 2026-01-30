@@ -26,13 +26,17 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-primary/15 bg-card/98 shadow-sm backdrop-blur supports-backdrop-filter:bg-card/80">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-            <Heart className="h-5 w-5 text-primary-foreground" />
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-linear-to-br from-primary to-secondary shadow-md hover:shadow-lg transition-shadow">
+            <span className="text-xl font-bold text-primary-foreground">🤝</span>
           </div>
-          <span className="text-xl font-semibold tracking-tight">Dir-Khir</span>
+          <div className="hidden sm:flex flex-col">
+            <span className="text-lg font-bold tracking-tight text-primary">Dir-Khir</span>
+            <span className="text-xs font-semibold text-secondary">Entraide de quartier</span>
+          </div>
+          <span className="sm:hidden text-lg font-bold text-primary">Dir-Khir</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -80,10 +84,10 @@ export function Navbar() {
           <SheetContent side="right" className="w-[280px] sm:w-[320px]">
             <div className="flex flex-col gap-4 pt-8">
               <Link href="/" className="flex items-center gap-2 pb-4">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-                  <Heart className="h-5 w-5 text-primary-foreground" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary to-secondary shadow-sm">
+                  <span className="text-lg font-bold text-primary-foreground">🤝</span>
                 </div>
-                <span className="text-xl font-semibold tracking-tight">Dir-Khir</span>
+                <span className="text-lg font-bold tracking-tight">Dir-Khir</span>
               </Link>
               <nav className="flex flex-col gap-2">
                 <Link href="/" onClick={() => setIsOpen(false)}>

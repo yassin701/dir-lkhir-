@@ -1,126 +1,153 @@
-"use client"
-
+import { db } from "@/db"
+import { needs } from "@/db/schema"
 import { Navbar } from "@/components/ui/navbar"
-import { HelpRequestCard } from "@/components/ui/help-request-card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { useSession } from "@/lib/auth/client"
-import { useRouter } from "next/navigation"
+import { ArrowRight } from "lucide-react"
+import { getServerSession } from "@/lib/auth/get-session"
+import NeedCard from "@/components/needs/need-card"
+import { EmptyNeeds } from "@/components/empty-states"
 
-const helpRequests = [
-  {
-    title: "Need help moving furniture",
-    city: "Casablanca",
-    description: "Looking for someone to help move some heavy furniture from my apartment to a new location. Would need about 2-3 hours of help.",
-  },
-  {
-    title: "Tutoring for high school math",
-    city: "Rabat",
-    description: "Seeking a tutor to help my daughter with algebra and geometry. Preferably someone with teaching experience.",
-  },
-  {
-    title: "Grocery shopping assistance",
-    city: "Marrakech",
-    description: "Elderly person looking for help with weekly grocery shopping. I can provide a list and payment for groceries.",
-  },
-  {
-    title: "Car repair advice needed",
-    city: "Fes",
-    description: "My car is making strange noises. Looking for someone knowledgeable about car mechanics to diagnose the issue.",
-  },
-  {
-    title: "Translation help needed",
-    city: "Tangier",
-    description: "Need help translating official documents from Arabic to French for administrative purposes.",
-  },
-  {
-    title: "Computer setup assistance",
-    city: "Agadir",
-    description: "Just bought a new computer and need help setting it up, installing software, and transferring files from my old device.",
-  },
+const moroccanCities = [
+  "Tangier",
+  "Tetouan",
+  "Fez",
+  "Meknes",
+  "Rabat",
+  "Casablanca",
+  "Marrakech",
+  "Agadir",
+  "Essaouira",
+  "Laayoune",
 ]
 
-export default function HomePage() {
-  const { data: session } = useSession()
-  const router = useRouter()
-  const isLoggedIn = !!session
+const categories = [
+  { value: "education", label: "📚 Education" },
+  { value: "cleaning", label: "🧹 Cleaning" },
+  { value: "financial", label: "💰 Financial" },
+  { value: "health", label: "❤️ Health" },
+  { value: "food", label: "🍴 Food" },
+  { value: "other", label: "🤝 Other" },
+]
 
-  const handleCreateClick = () => {
-    if (!isLoggedIn) {
-      router.push("/login")
-    } else {
-      router.push("/create")
-    }
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ city?: string; category?: string }>
+}) {
+  const session = await getServerSession()
+  const params = await searchParams
+
+  // Fetch needs from database
+  let allNeeds = await db.query.needs.findMany({
+    with: {
+      author: true,
+      volunteers: true,
+    },
+    orderBy: (needs, { desc }) => [desc(needs.createdAt)],
+  })
+
+  // Filter by city if provided
+  if (params.city) {
+    allNeeds = allNeeds.filter(
+      (need) => need.city.toLowerCase() === params.city!.toLowerCase()
+    )
   }
 
+  // Filter by category if provided
+  if (params.category) {
+    allNeeds = allNeeds.filter((need) => need.category === params.category)
+  }
+
+  // Filter unresolved needs
+  const activeNeeds = allNeeds.filter((need) => !need.isResolved)
+
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="border-b border-border bg-card">
-          <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="mx-auto max-w-3xl text-center">
-              <h1 className="text-balance text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-                Dir-Khir
-              </h1>
-              <p className="mt-6 text-pretty text-lg text-muted-foreground md:text-xl">
-                A community platform where neighbors help neighbors. Request assistance or offer your skills to make a difference in someone&apos;s life.
-              </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button size="lg" className="gap-2" onClick={handleCreateClick}>
-                  Create Help Request
-                  <ArrowRight className="h-4 w-4" />
+      {/* Hero Section */}
+      <section className="border-b-2 border-primary/15 bg-linear-to-b from-primary/8 via-secondary/5 to-transparent px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-primary">
+            L'entraide de quartier
+          </h1>
+          <p className="mt-3 text-xl font-semibold text-secondary">
+            De Tanger à Lagouira 🤝
+          </p>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            Coordonnez l'aide de proximité dans vos quartiers. Publiez un besoin ou aidez quelqu'un d'autre.
+          </p>
+          <div className="mt-10 flex gap-4 justify-center flex-wrap">
+            <Link href={session ? "/proposer-un-besoin" : "/register"}>
+              <Button size="lg" className="gap-2 shadow-lg hover:shadow-xl">
+                Publier un besoin <ArrowRight className="h-5 w-5" />
+              </Button>
+            </Link>
+            {session && (
+              <Link href="/mon-espace">
+                <Button size="lg" variant="outline" className="gap-2 border-2">
+                  Mon Espace
                 </Button>
-                {!isLoggedIn && (
-                  <Link href="/login">
-                    <Button size="lg" variant="outline">
-                      Login / Register
-                    </Button>
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Help Requests Grid */}
-        <section className="container mx-auto px-4 py-12 md:py-16">
-          <div className="mb-8 flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">Open Requests</h2>
-              <p className="mt-1 text-muted-foreground">People in your community who need help</p>
-            </div>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {helpRequests.map((request, index) => (
-              <HelpRequestCard
-                key={index}
-                title={request.title}
-                city={request.city}
-                description={request.description}
-              />
-            ))}
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-border bg-card">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Dir-Khir. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Building stronger communities together.
-            </p>
+              </Link>
+            )}
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Main Content */}
+      <section className="px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          {/* Stats */}
+          <div className="mb-12 grid gap-5 sm:grid-cols-3">
+            <Card className="border-primary/20 hover:border-primary/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold text-primary uppercase tracking-wider">Besoins actifs</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-bold text-primary">{activeNeeds.length}</div>
+                <p className="text-sm text-secondary font-semibold mt-1">Demandes en attente</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-secondary/20 hover:border-secondary/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold text-secondary uppercase tracking-wider">Volontaires</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-4xl font-bold text-secondary">
+                  {activeNeeds.reduce((sum, n) => sum + n.volunteerCount, 0)}
+                </div>
+                <p className="text-sm text-primary font-semibold mt-1">Personnes qui aident</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-accent/20 hover:border-accent/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold text-accent uppercase tracking-wider">Résolus</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">
+                  {allNeeds.filter((n) => n.isResolved).length}
+                </div>
+                <p className="text-xs text-muted-foreground">Besoins complétés</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Needs Grid */}
+          {activeNeeds.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 animate-fade-in">
+              {activeNeeds.map((need) => (
+                <NeedCard key={need.id} need={need} session={session} />
+              ))}
+            </div>
+          ) : (
+            <EmptyNeeds />
+          )}
+        </div>
+      </section>
     </div>
   )
 }

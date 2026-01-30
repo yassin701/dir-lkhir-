@@ -44,8 +44,8 @@ export default function SignUpForm() {
         email: data.email,
         password: data.password,
         name: data.name,
-        // Map other fields as needed by your auth schema if supported
-        // username: data.username 
+        username: data.username,
+        gender: data.gender,
       });
 
       if (response.error) {

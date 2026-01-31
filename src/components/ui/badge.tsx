@@ -8,10 +8,10 @@ function Badge({
     ...props
 }: React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "secondary" | "destructive" | "outline" }) {
     const variants = {
-        default: "border-primary/30 bg-primary/10 text-primary hover:bg-primary/15 font-semibold",
-        secondary: "border-secondary/30 bg-secondary/10 text-secondary hover:bg-secondary/15 font-semibold",
-        destructive: "border-destructive/30 bg-destructive/10 text-destructive hover:bg-destructive/15 font-semibold",
-        outline: "text-foreground border-primary/40 hover:bg-primary/5",
+        default: "border-emerald-400 bg-emerald-100 text-emerald-900 hover:bg-emerald-200 font-semibold",
+        secondary: "border-amber-400 bg-amber-100 text-amber-900 hover:bg-amber-200 font-semibold",
+        destructive: "border-red-400 bg-red-100 text-red-900 hover:bg-red-200 font-semibold",
+        outline: "text-emerald-900 border-emerald-500 hover:bg-emerald-50",
     }
 
     return (

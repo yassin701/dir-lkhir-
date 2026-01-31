@@ -30,41 +30,41 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-md group-hover:shadow-lg transition-all duration-300">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-700 to-amber-600 shadow-md group-hover:shadow-lg transition-all duration-300">
             <Heart className="h-5 w-5 text-white" />
           </div>
           <div className="hidden sm:flex flex-col">
-            <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
-              Community Aid
+            <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-emerald-900 to-amber-700 bg-clip-text text-transparent">
+              Dir-Khir
             </span>
-            <span className="text-xs font-medium text-gray-600">Neighbors Helping Neighbors</span>
+            <span className="text-xs font-medium text-amber-700">الإخاء والتضامن</span>
           </div>
-          <span className="sm:hidden text-lg font-bold bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
-            Community Aid
+          <span className="sm:hidden text-lg font-bold bg-gradient-to-r from-emerald-900 to-amber-700 bg-clip-text text-transparent">
+            Dir-Khir
           </span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 md:flex">
           <Link href="/">
-            <Button variant="ghost" className="gap-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50">
+            <Button variant="ghost" className="gap-2 text-sm font-medium text-emerald-900 hover:text-emerald-700 hover:bg-emerald-50">
               <Home className="h-4 w-4" />
-              Home
+              Accueil
             </Button>
           </Link>
 
           {isLoggedIn && (
             <>
               <Link href="/create">
-                <Button variant="ghost" className="gap-2 text-sm font-medium text-gray-700 hover:text-green-600 hover:bg-green-50">
+                <Button variant="ghost" className="gap-2 text-sm font-medium text-emerald-900 hover:text-amber-700 hover:bg-amber-50">
                   <PlusCircle className="h-4 w-4" />
-                  Share Need
+                  Publier un Besoin
                 </Button>
               </Link>
               <Link href="/mon-espace">
-                <Button variant="ghost" className="gap-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50">
+                <Button variant="ghost" className="gap-2 text-sm font-medium text-emerald-900 hover:text-emerald-700 hover:bg-emerald-50">
                   <BarChart3 className="h-4 w-4" />
-                  My Dashboard
+                  Tableau de Bord
                 </Button>
               </Link>
             </>
@@ -73,17 +73,17 @@ export function Navbar() {
           {isLoggedIn ? (
             <Button
               variant="ghost"
-              className="gap-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50"
+              className="gap-2 text-sm font-medium text-emerald-900 hover:text-red-600 hover:bg-red-50"
               onClick={handleLogout}
             >
               <LogOut className="h-4 w-4" />
-              Logout
+              Déconnexion
             </Button>
           ) : (
             <Link href="/login">
-              <Button className="gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-sm hover:shadow-md">
+              <Button className="gap-2 bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700 shadow-sm hover:shadow-md">
                 <Heart className="h-4 w-4" />
-                Join Now
+                Rejoindre
               </Button>
             </Link>
           )}
@@ -97,64 +97,62 @@ export function Navbar() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[280px] sm:w-[320px] border-l border-gray-200">
+          <SheetContent side="right" className="w-[280px] sm:w-[320px] border-l border-emerald-200 bg-white">
             <div className="flex flex-col gap-6 pt-8">
               {/* Mobile Logo */}
-              <Link href="/" className="flex items-center gap-3 pb-4 border-b border-gray-100" onClick={() => setIsOpen(false)}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-sm">
+              <Link href="/" className="flex items-center gap-3 pb-4 border-b border-emerald-100" onClick={() => setIsOpen(false)}>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-700 to-amber-600 shadow-sm">
                   <Heart className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-lg font-bold bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
-                    Community Aid
-                  </span>
-                  <span className="text-xs text-gray-600">Helping Together</span>
+                  <span className="text-lg font-bold text-emerald-900">Dir-Khir</span>
+                  <span className="text-xs text-amber-700">الإخاء والتضامن</span>
                 </div>
               </Link>
 
               {/* Mobile Navigation Links */}
               <nav className="flex flex-col gap-1">
                 <Link href="/" onClick={() => setIsOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-gray-700 hover:bg-gray-100">
+                  <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-emerald-900 hover:bg-emerald-50">
                     <Home className="h-5 w-5" />
-                    Home
+                    Accueil
                   </Button>
                 </Link>
 
                 {isLoggedIn && (
                   <>
                     <Link href="/create" onClick={() => setIsOpen(false)}>
-                    <Link href="/mon-espace" onClick={() => setIsOpen(false)}>
-                      <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-gray-700 hover:bg-purple-50 hover:text-purple-700">
-                        <BarChart3 className="h-5 w-5" />
-                        My Dashboard
-                      </Button>
-                    </Link>   <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-gray-700 hover:bg-green-50 hover:text-green-700">
+                      <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-emerald-900 hover:bg-amber-50">
                         <PlusCircle className="h-5 w-5" />
-                        Share Need
+                        Publier un Besoin
                       </Button>
                     </Link>
-                   
+                    <Link href="/mon-espace" onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-emerald-900 hover:bg-emerald-50">
+                        <BarChart3 className="h-5 w-5" />
+                        Tableau de Bord
+                      </Button>
+                    </Link>
                   </>
                 )}
 
                 {isLoggedIn ? (
                   <Button
                     variant="ghost"
-                    className="w-full justify-start gap-3 text-base h-12 text-gray-700 hover:bg-red-50 hover:text-red-700"
+                    className="w-full justify-start gap-3 text-base h-12 text-emerald-900 hover:bg-red-50 hover:text-red-700"
                     onClick={() => {
                       handleLogout()
                       setIsOpen(false)
                     }}
                   >
                     <LogOut className="h-5 w-5" />
-                    Logout
+                    Déconnexion
                   </Button>
                 ) : (
                   <Link href="/login" onClick={() => setIsOpen(false)}>
-                    <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-gray-700 hover:bg-blue-50 hover:text-blue-700">
+                    <Button className="w-full gap-3 bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700">
                       <Heart className="h-5 w-5" />
-                      Login / Register
+                      Rejoindre
                     </Button>
                   </Link>
                 )}
@@ -162,9 +160,9 @@ export function Navbar() {
 
               {/* User Info (if logged in) */}
               {isLoggedIn && session?.user && (
-                <div className="mt-auto pt-6 border-t border-gray-100">
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center">
+                <div className="mt-auto pt-6 border-t border-emerald-100">
+                  <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-lg">
+                    <div className="h-9 w-9 rounded-full bg-gradient-to-br from-emerald-700 to-amber-600 flex items-center justify-center">
                       <span className="text-white text-sm font-medium">
                         {session.user.name?.[0]?.toUpperCase() || "U"}
                       </span>

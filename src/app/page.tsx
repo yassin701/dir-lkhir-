@@ -65,39 +65,39 @@ export default async function HomePage({
   const activeNeeds = allNeeds.filter((need) => !need.isResolved)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-20">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-amber-50 pt-20">
       <Navbar />
 
       {/* Hero Section */}
       <section className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl">
           <div className="text-center space-y-6">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               <MapPin className="h-4 w-4" />
-              Active across Morocco
+              نشط عبر المغرب
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
-              Connect & Help Together
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-emerald-900 via-amber-800 to-emerald-700 bg-clip-text text-transparent">
+              Connectez-vous & Aidez Ensemble
             </h1>
             
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              A community platform where neighbors help neighbors. Share needs, offer help, and make a difference in your community.
+            <p className="text-xl text-emerald-700 max-w-2xl mx-auto leading-relaxed">
+              Une plateforme communautaire où les voisins s'entraident. Partagez des besoins, offrez de l'aide, et faites la différence dans votre communauté.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
               <Link href={session ? "/create" : "/register"} className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all">
-                  <span>Share a Need</span>
+                <Button size="lg" className="w-full sm:w-auto gap-3 bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700 shadow-lg hover:shadow-xl transition-all">
+                  <span>Partager un Besoin</span>
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </Link>
               
               {session && (
                 <Link href="/mon-espace" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 border-2 border-gray-300 hover:border-blue-400 hover:bg-blue-50 transition-colors">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 border-2 border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50 transition-colors text-emerald-900">
                     <Target className="h-5 w-5" />
-                    My Dashboard
+                    Tableau de Bord
                   </Button>
                 </Link>
               )}
@@ -110,54 +110,54 @@ export default async function HomePage({
       <section className="px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 sm:grid-cols-3">
-            <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="border-l-4 border-l-emerald-500 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-50 to-white">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Active Needs</p>
-                    <p className="text-3xl font-bold text-gray-900 mt-2">{activeNeeds.length}</p>
+                    <p className="text-sm font-medium text-emerald-600 uppercase tracking-wider">Besoins Actifs</p>
+                    <p className="text-3xl font-bold text-emerald-900 mt-2">{activeNeeds.length}</p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Target className="h-6 w-6 text-blue-600" />
+                  <div className="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <Target className="h-6 w-6 text-emerald-600" />
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-3">Requests waiting for help</p>
+                <p className="text-sm text-emerald-700 mt-3">Demandes en attente d'aide</p>
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="border-l-4 border-l-amber-500 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-amber-50 to-white">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Volunteers</p>
-                    <p className="text-3xl font-bold text-gray-900 mt-2">
+                    <p className="text-sm font-medium text-amber-600 uppercase tracking-wider">Volontaires</p>
+                    <p className="text-3xl font-bold text-amber-900 mt-2">
                       {activeNeeds.reduce((sum, n) => sum + (n.volunteers?.length || 0), 0)}
                     </p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
-                    <Users className="h-6 w-6 text-green-600" />
+                  <div className="h-12 w-12 rounded-full bg-amber-100 flex items-center justify-center">
+                    <Users className="h-6 w-6 text-amber-600" />
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-3">People helping others</p>
+                <p className="text-sm text-amber-700 mt-3">Gens aidant les autres</p>
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="border-l-4 border-l-emerald-600 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-50 to-white">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">Resolved</p>
-                    <p className="text-3xl font-bold text-gray-900 mt-2">
+                    <p className="text-sm font-medium text-emerald-600 uppercase tracking-wider">Résolus</p>
+                    <p className="text-3xl font-bold text-emerald-900 mt-2">
                       {allNeeds.filter((n) => n.isResolved).length}
                     </p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
-                    <div className="h-6 w-6 rounded-full bg-purple-600 flex items-center justify-center">
+                  <div className="h-12 w-12 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <div className="h-6 w-6 rounded-full bg-emerald-600 flex items-center justify-center">
                       <span className="text-white text-sm">✓</span>
                     </div>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-3">Successfully completed</p>
+                <p className="text-sm text-emerald-700 mt-3">Terminés avec succès</p>
               </CardContent>
             </Card>
           </div>

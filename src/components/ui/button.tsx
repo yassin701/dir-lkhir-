@@ -10,15 +10,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-md hover:shadow-lg hover:bg-primary/95 active:scale-95",
+          "bg-gradient-to-r from-emerald-700 to-amber-600 text-white shadow-md hover:shadow-lg hover:from-emerald-800 hover:to-amber-700 active:scale-95",
         destructive:
-          "bg-destructive text-white shadow-md hover:shadow-lg hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
+          "bg-red-600 text-white shadow-md hover:shadow-lg hover:bg-red-700 focus-visible:ring-red-200 dark:focus-visible:ring-red-400",
         outline:
-          "border-2 border-primary text-primary bg-background shadow-sm hover:bg-primary/5 hover:shadow-md active:scale-95",
+          "border-2 border-emerald-700 text-emerald-900 bg-white shadow-sm hover:bg-emerald-50 hover:shadow-md hover:border-emerald-800 active:scale-95",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-md hover:shadow-lg hover:bg-secondary/85 active:scale-95",
-        ghost: "hover:bg-secondary/10 hover:text-secondary text-foreground active:scale-95",
-        link: "text-primary underline-offset-4 hover:underline font-semibold",
+          "bg-amber-100 text-amber-900 shadow-md hover:shadow-lg hover:bg-amber-200 active:scale-95",
+        ghost: "hover:bg-emerald-100/50 hover:text-emerald-900 text-emerald-900 active:scale-95",
+        link: "text-emerald-700 underline-offset-4 hover:underline font-semibold",
       },
       size: {
         default: "h-10 px-5 py-2 has-[>svg]:px-4",

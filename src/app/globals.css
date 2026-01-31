@@ -172,4 +172,44 @@
   .animate-scale-in {
     animation: scale-in 0.3s ease-in-out;
   }
+
+  /* Moroccan Zellige Pattern */
+  .moroccan-pattern {
+    background-image: 
+      linear-gradient(45deg, transparent 48%, #065f46 49%, #065f46 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, #a16207 49%, #a16207 51%, transparent 52%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    background-color: #f0fdf4;
+  }
+
+  /* Moroccan Arched Border Style */
+  .moroccan-arch {
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  }
+
+  /* Moroccan Tile Accent */
+  .moroccan-tile {
+    position: relative;
+    background: linear-gradient(135deg, #065f46 0%, #0d7a5e 100%);
+    border-left: 4px solid #a16207;
+    border-bottom: 4px solid #fbbf24;
+  }
+
+  /* Moroccan Text Shadow for Headers */
+  .moroccan-text {
+    text-shadow: 2px 2px 4px rgba(6, 95, 70, 0.1);
+    letter-spacing: 0.5px;
+  }
+
+  /* Moroccan Border Decorations */
+  .moroccan-border-top {
+    border-top: 3px solid #065f46;
+    border-image: linear-gradient(90deg, #065f46, #a16207, #065f46) 1;
+  }
+
+  .moroccan-border-bottom {
+    border-bottom: 3px solid #a16207;
+    border-image: linear-gradient(90deg, #065f46, #a16207, #065f46) 1;
+  }
 }

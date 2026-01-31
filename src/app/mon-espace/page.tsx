@@ -55,77 +55,77 @@ export default async function DashboardPage() {
   const resolvedUserNeeds = userNeeds.filter((n) => n.isResolved);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-20">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-amber-50 pt-20">
       <Navbar />
 
       <main className="px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl space-y-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200 pb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-emerald-200 pb-8">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">My Dashboard</h1>
-              <p className="text-lg text-gray-600 mt-2">Welcome back, {session.user.name}! 👋</p>
+              <h1 className="text-3xl sm:text-4xl font-bold text-emerald-900 tracking-tight">Tableau de Bord</h1>
+              <p className="text-lg text-emerald-700 mt-2">Bienvenue de retour, {session.user.name}! 👋</p>
             </div>
-            <Link href="/create-need">
-              <Button size="lg" className="gap-2 shadow-md hover:shadow-lg transition-shadow bg-gradient-to-r from-blue-600 to-indigo-600">
+            <Link href="/create">
+              <Button size="lg" className="gap-2 shadow-md hover:shadow-lg transition-shadow bg-gradient-to-r from-emerald-700 to-amber-600">
                 <Plus className="h-5 w-5" />
-                New Need
+                Nouveau Besoin
               </Button>
             </Link>
           </div>
 
           {/* Stats */}
           <div className="grid gap-6 sm:grid-cols-3">
-            <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="border-l-4 border-l-emerald-500 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-50 to-white">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-gray-500">My Requests</CardTitle>
+                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-emerald-600">Mes Demandes</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-2">
-                  <div className="text-3xl font-bold text-gray-900">{activeUserNeeds.length}</div>
-                  <span className="text-sm text-gray-500">active</span>
+                  <div className="text-3xl font-bold text-emerald-900">{activeUserNeeds.length}</div>
+                  <span className="text-sm text-emerald-600">actif</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">Needs you've created</p>
+                <p className="text-sm text-emerald-700 mt-1">Besoins que vous avez créés</p>
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="border-l-4 border-l-amber-500 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-amber-50 to-white">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-gray-500">My Commitments</CardTitle>
+                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-amber-600">Mes Engagements</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-2">
-                  <div className="text-3xl font-bold text-gray-900">{activeVolunteeredNeeds.length}</div>
-                  <span className="text-sm text-gray-500">active</span>
+                  <div className="text-3xl font-bold text-amber-900">{activeVolunteeredNeeds.length}</div>
+                  <span className="text-sm text-amber-600">actif</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">Needs you're helping with</p>
+                <p className="text-sm text-amber-700 mt-1">Besoins avec lesquels vous aidez</p>
               </CardContent>
             </Card>
 
-            <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
+            <Card className="border-l-4 border-l-emerald-600 shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-emerald-50 to-white">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-gray-500">Completed</CardTitle>
+                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-emerald-600">Complété</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-2">
-                  <div className="text-3xl font-bold text-gray-900">
+                  <div className="text-3xl font-bold text-emerald-900">
                     {resolvedUserNeeds.length + resolvedVolunteeredNeeds.length}
                   </div>
-                  <span className="text-sm text-gray-500">total</span>
+                  <span className="text-sm text-emerald-600">total</span>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">Successfully resolved</p>
+                <p className="text-sm text-emerald-700 mt-1">Résolus avec succès</p>
               </CardContent>
             </Card>
           </div>
 
           {/* My Requests */}
           <section className="space-y-6">
-            <div className="border-b border-gray-200 pb-4">
+            <div className="border-b border-emerald-200 pb-4">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-1 bg-blue-600 rounded-full"></div>
+                <div className="h-8 w-1 bg-emerald-600 rounded-full"></div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">My Requests</h2>
-                  <p className="text-gray-600 mt-1">Needs I've published</p>
+                  <h2 className="text-2xl font-bold text-emerald-900">Mes Demandes</h2>
+                  <p className="text-emerald-700 mt-1">Besoins que j'ai publiés</p>
                 </div>
               </div>
             </div>
@@ -137,32 +137,32 @@ export default async function DashboardPage() {
                     <CardHeader className="pb-4">
                       <div className="flex items-start justify-between">
                         <div className="space-y-2">
-                          <CardTitle className="text-lg font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                          <CardTitle className="text-lg font-semibold text-emerald-900 group-hover:text-emerald-700 transition-colors">
                             {need.title}
                           </CardTitle>
                           <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4 text-gray-400" />
-                            <CardDescription className="text-sm font-medium text-gray-700">
+                            <MapPin className="h-4 w-4 text-emerald-500" />
+                            <CardDescription className="text-sm font-medium text-emerald-700">
                               {need.city}
                             </CardDescription>
                           </div>
                         </div>
-                        <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200">
+                        <Badge className="bg-emerald-100 text-emerald-900 hover:bg-emerald-200">
                           {need.category}
                         </Badge>
                       </div>
                     </CardHeader>
 
                     <CardContent className="space-y-4">
-                      <p className="text-sm text-gray-600 line-clamp-3">
+                      <p className="text-sm text-emerald-700 line-clamp-3">
                         {need.description}
                       </p>
 
-                      <div className="flex items-center justify-between pt-4 border-t">
+                      <div className="flex items-center justify-between pt-4 border-t border-emerald-200">
                         <div className="flex items-center gap-2">
-                          <Users className="h-4 w-4 text-gray-500" />
-                          <span className="text-sm font-medium text-gray-700">
-                            {need.volunteers.length} volunteer{need.volunteers.length !== 1 ? 's' : ''}
+                          <Users className="h-4 w-4 text-emerald-600" />
+                          <span className="text-sm font-medium text-emerald-900">
+                            {need.volunteers.length} volontaire{need.volunteers.length !== 1 ? 's' : ''}
                           </span>
                         </div>
                         <DashboardActions needId={need.id} isOwner={true} />
@@ -178,12 +178,12 @@ export default async function DashboardPage() {
 
           {/* My Volunteering */}
           <section className="space-y-6">
-            <div className="border-b border-gray-200 pb-4">
+            <div className="border-b border-emerald-200 pb-4">
               <div className="flex items-center gap-3">
-                <div className="h-8 w-1 bg-green-600 rounded-full"></div>
+                <div className="h-8 w-1 bg-amber-600 rounded-full"></div>
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">My Commitments</h2>
-                  <p className="text-gray-600 mt-1">Needs I'm participating in</p>
+                  <h2 className="text-2xl font-bold text-emerald-900">Mes Engagements</h2>
+                  <p className="text-emerald-700 mt-1">Besoins auxquels je participe</p>
                 </div>
               </div>
             </div>
@@ -191,30 +191,30 @@ export default async function DashboardPage() {
             {activeVolunteeredNeeds.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {activeVolunteeredNeeds.map((need) => (
-                  <Card key={need?.id} className="group hover:shadow-lg transition-all duration-300 border hover:border-green-200">
+                  <Card key={need?.id} className="group hover:shadow-lg transition-all duration-300 border border-amber-200 hover:border-amber-400 bg-gradient-to-br from-white to-amber-50/30">
                     <CardHeader className="pb-4">
                       <div className="space-y-3">
                         <div className="flex items-start justify-between">
-                          <CardTitle className="text-lg font-semibold text-gray-900 group-hover:text-green-700 transition-colors">
+                          <CardTitle className="text-lg font-semibold text-emerald-900 group-hover:text-amber-700 transition-colors">
                             {need?.title}
                           </CardTitle>
-                          <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
+                          <Badge className="bg-amber-100 text-amber-900 hover:bg-amber-200">
                             {need?.category}
                           </Badge>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-sm text-emerald-700">
                           <Calendar className="h-4 w-4" />
-                          <span>Posted by {need?.author?.name}</span>
+                          <span>Publié par {need?.author?.name}</span>
                         </div>
                       </div>
                     </CardHeader>
 
                     <CardContent className="space-y-4">
-                      <p className="text-sm text-gray-600 line-clamp-3">
+                      <p className="text-sm text-emerald-700 line-clamp-3">
                         {need?.description}
                       </p>
 
-                      <div className="pt-4 border-t">
+                      <div className="pt-4 border-t border-amber-200">
                         <DashboardActions needId={need?.id || ""} isOwner={false} />
                       </div>
                     </CardContent>

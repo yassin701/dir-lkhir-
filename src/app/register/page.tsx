@@ -49,70 +49,70 @@ export default function SignUpPage() {
 
               {/* Benefits List */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900">Why Join Community Aid?</h3>
+                <h3 className="text-lg font-semibold text-emerald-900">Pourquoi rejoindre Dir-Khir?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-green-600 text-sm">✓</span>
+                    <div className="h-6 w-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-emerald-600 text-sm">✓</span>
                     </div>
-                    <span className="text-gray-700">Connect with people in your neighborhood</span>
+                    <span className="text-emerald-700">Connectez-vous avec des gens de votre quartier</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-blue-600 text-sm">✓</span>
+                    <div className="h-6 w-6 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-amber-600 text-sm">✓</span>
                     </div>
-                    <span className="text-gray-700">Request help when you need it</span>
+                    <span className="text-emerald-700">Demandez de l'aide quand vous en avez besoin</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-purple-600 text-sm">✓</span>
+                    <div className="h-6 w-6 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-emerald-600 text-sm">✓</span>
                     </div>
-                    <span className="text-gray-700">Offer help and make a difference</span>
+                    <span className="text-emerald-700">Offrez de l'aide et faites la différence</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
-                      <span className="text-orange-600 text-sm">✓</span>
+                    <div className="h-6 w-6 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-amber-600 text-sm">✓</span>
                     </div>
-                    <span className="text-gray-700">Build stronger local connections</span>
+                    <span className="text-emerald-700">Renforcez les connexions locales plus fortes</span>
                   </li>
                 </ul>
               </div>
 
               {/* Testimonial */}
-              <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                <p className="text-gray-700 italic">"This platform helped me find assistance when I needed it most. The community support is amazing!"</p>
+              <div className="bg-white rounded-xl border border-emerald-200 p-6 shadow-sm">
+                <p className="text-emerald-700 italic">"Cette plateforme m'a aidé à trouver de l'aide quand j'en avais le plus besoin. Le soutien communautaire est incroyable!"</p>
                 <div className="flex items-center gap-3 mt-4">
-                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500"></div>
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-emerald-600 to-amber-600"></div>
                   <div>
-                    <p className="font-medium text-gray-900">Sarah M.</p>
-                    <p className="text-sm text-gray-600">Community Member, Casablanca</p>
+                    <p className="font-medium text-emerald-900">Sarah M.</p>
+                    <p className="text-sm text-emerald-700">Membre de la communauté, Casablanca</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Side - Sign Up Form */}
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-8">
+            <div className="bg-white rounded-2xl border border-emerald-200 shadow-xl p-8">
               <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Create Your Account</h2>
-                <p className="text-gray-600 mt-2">Start your journey with Community Aid</p>
+                <h2 className="text-2xl font-bold text-emerald-900">Créer Votre Compte</h2>
+                <p className="text-emerald-700 mt-2">Commencez votre voyage avec Dir-Khir</p>
               </div>
 
               <SignUpForm />
 
-              <div className="mt-8 pt-6 border-t border-gray-200">
+              <div className="mt-8 pt-6 border-t border-emerald-200">
                 <div className="text-center">
-                  <p className="text-gray-600">
-                    Already have an account?{" "}
+                  <p className="text-emerald-700">
+                    Vous avez déjà un compte?{" "}
                     <Link 
                       href="/login" 
-                      className="font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+                      className="font-semibold text-emerald-700 hover:text-emerald-900 transition-colors"
                     >
-                      Sign In
+                      Se connecter
                     </Link>
                   </p>
-                  <p className="text-xs text-gray-500 mt-4">
-                    By joining, you agree to our Terms and Privacy Policy
+                  <p className="text-xs text-emerald-600 mt-4">
+                    En rejoignant, vous acceptez nos Conditions et Politique de Confidentialité
                   </p>
                 </div>
               </div>

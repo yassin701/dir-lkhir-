@@ -51,12 +51,12 @@ export default function SignUpForm() {
       });
 
       if (response.error) {
-        toast.error("Registration failed", {
-          description: response.error.message || "Please check your information and try again.",
+        toast.error("L'inscription a échoué", {
+          description: response.error.message || "Veuillez vérifier vos informations et réessayer.",
         });
       } else {
-        toast.success("Welcome to Community Aid! 🎉", {
-          description: "Your account has been created successfully.",
+        toast.success("Bienvenue sur Dir-Khir! 🎉", {
+          description: "Votre compte a été créé avec succès.",
         });
         router.push("/");
         router.refresh();
@@ -66,7 +66,7 @@ export default function SignUpForm() {
 
   const getInputClassName = (fieldName: keyof SignUpValues) =>
     cn(
-      "h-11 bg-white border-gray-300 focus:border-blue-500 focus:ring-blue-500/20",
+      "h-11 bg-white border-emerald-300 focus:border-emerald-700 focus:ring-emerald-700/20",
       form.formState.errors[fieldName] &&
       "border-red-300 text-red-700 focus:border-red-400 focus:ring-red-100",
     );
@@ -75,11 +75,11 @@ export default function SignUpForm() {
     <div className="w-full max-w-md">
       {/* Header */}
       <div className="text-center mb-8 space-y-3">
-        <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 mb-2">
+        <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-br from-emerald-700 to-amber-600 mb-2">
           <Shield className="h-6 w-6 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-900">Create Account</h2>
-        <p className="text-gray-600">Join the community and start helping today</p>
+        <h2 className="text-2xl font-bold text-emerald-900">Créer un Compte</h2>
+        <p className="text-emerald-700">Rejoignez la communauté et commencez à aider aujourd'hui</p>
       </div>
 
       <Form {...form}>
@@ -87,19 +87,19 @@ export default function SignUpForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-6"
         >
-          <div className="space-y-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <div className="space-y-4 bg-white p-6 rounded-xl border border-emerald-200 shadow-sm">
             {/* Name Field */}
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-700">Full Name</FormLabel>
+                  <FormLabel className="text-sm font-medium text-emerald-900">Nom Complet</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <UserIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <UserIcon className="absolute left-3 top-3 h-5 w-5 text-emerald-400" />
                       <Input
-                        placeholder="John Doe"
+                        placeholder="Jean Dupont"
                         className={cn("pl-10", getInputClassName("name"))}
                         disabled={isPending}
                         {...field}
@@ -117,12 +117,12 @@ export default function SignUpForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-700">Email Address</FormLabel>
+                  <FormLabel className="text-sm font-medium text-emerald-900">Adresse E-mail</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <MailIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <MailIcon className="absolute left-3 top-3 h-5 w-5 text-emerald-400" />
                       <Input
-                        placeholder="your@email.com"
+                        placeholder="votre@email.com"
                         className={cn("pl-10", getInputClassName("email"))}
                         disabled={isPending}
                         {...field}
@@ -140,12 +140,12 @@ export default function SignUpForm() {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-700">Username</FormLabel>
+                  <FormLabel className="text-sm font-medium text-emerald-900">Nom d'utilisateur</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <AtSign className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <AtSign className="absolute left-3 top-3 h-5 w-5 text-emerald-400" />
                       <Input
-                        placeholder="johndoe"
+                        placeholder="jeandupont"
                         className={cn("pl-10", getInputClassName("username"))}
                         disabled={isPending}
                         {...field}
@@ -163,13 +163,13 @@ export default function SignUpForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-700">Password</FormLabel>
+                  <FormLabel className="text-sm font-medium text-emerald-900">Mot de passe</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <Lock className="absolute left-3 top-3 h-5 w-5 text-emerald-400" />
                       <Input
                         type="password"
-                        placeholder="Create a strong password"
+                        placeholder="Créez un mot de passe fort"
                         className={cn("pl-10", getInputClassName("password"))}
                         disabled={isPending}
                         {...field}
@@ -187,13 +187,13 @@ export default function SignUpForm() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-sm font-medium text-gray-700">Confirm Password</FormLabel>
+                  <FormLabel className="text-sm font-medium text-emerald-900">Confirmer le mot de passe</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                      <Lock className="absolute left-3 top-3 h-5 w-5 text-emerald-400" />
                       <Input
                         type="password"
-                        placeholder="Confirm your password"
+                        placeholder="Confirmez votre mot de passe"
                         className={cn("pl-10", getInputClassName("confirmPassword"))}
                         disabled={isPending}
                         {...field}
@@ -211,7 +211,7 @@ export default function SignUpForm() {
               name="gender"
               render={({ field }) => (
                 <FormItem className="space-y-3 pt-2">
-                  <FormLabel className="text-sm font-medium text-gray-700">Gender</FormLabel>
+                  <FormLabel className="text-sm font-medium text-emerald-900">Genre</FormLabel>
                   <GenderRadioGroup
                     value={field.value}
                     onChange={field.onChange}
@@ -223,23 +223,23 @@ export default function SignUpForm() {
           </div>
 
           {/* Password Requirements */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
-            <p className="text-sm font-medium text-blue-800 flex items-center gap-2">
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4 space-y-2">
+            <p className="text-sm font-medium text-emerald-800 flex items-center gap-2">
               <Shield className="h-4 w-4" />
-              Password Requirements
+              Exigences du mot de passe
             </p>
-            <ul className="text-xs text-blue-700 space-y-1">
+            <ul className="text-xs text-emerald-700 space-y-1">
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-3 w-3" />
-                At least 8 characters long
+                Au moins 8 caractères de long
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-3 w-3" />
-                Contains uppercase and lowercase letters
+                Contient des lettres majuscules et minuscules
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle className="h-3 w-3" />
-                Includes numbers or special characters
+                Inclut des chiffres ou des caractères spéciaux
               </li>
             </ul>
           </div>
@@ -248,31 +248,31 @@ export default function SignUpForm() {
           <Button 
             type="submit" 
             disabled={isPending || !form.formState.isValid}
-            className="w-full h-12 gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all"
+            className="w-full h-12 gap-2 bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700 shadow-md hover:shadow-lg transition-all"
           >
             {isPending ? (
               <>
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                Creating Account...
+                Création du compte...
               </>
             ) : (
               <>
                 <Heart className="h-5 w-5" />
-                Join Community Aid
+                Rejoindre Dir-Khir
                 <ArrowRight className="h-5 w-5" />
               </>
             )}
           </Button>
 
           {/* Terms Notice */}
-          <p className="text-xs text-center text-gray-600">
-            By creating an account, you agree to our{" "}
-            <a href="/terms" className="text-blue-600 hover:text-blue-800 font-medium">
-              Terms of Service
+          <p className="text-xs text-center text-emerald-700">
+            En créant un compte, vous acceptez nos{" "}
+            <a href="/terms" className="text-emerald-700 hover:text-emerald-900 font-medium">
+              Conditions de service
             </a>{" "}
-            and{" "}
-            <a href="/privacy" className="text-blue-600 hover:text-blue-800 font-medium">
-              Privacy Policy
+            et notre{" "}
+            <a href="/privacy" className="text-emerald-700 hover:text-emerald-900 font-medium">
+              Politique de confidentialité
             </a>
           </p>
         </form>

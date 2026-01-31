@@ -93,11 +93,6 @@ export default function SignUpPage() {
 
             {/* Right Side - Sign Up Form */}
             <div className="bg-white rounded-2xl border border-emerald-200 shadow-xl p-8">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-emerald-900">Créer Votre Compte</h2>
-                <p className="text-emerald-700 mt-2">Commencez votre voyage avec Dir-Khir</p>
-              </div>
-
               <SignUpForm />
 
               <div className="mt-8 pt-6 border-t border-emerald-200">

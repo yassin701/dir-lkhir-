@@ -37,7 +37,7 @@ export function Navbar() {
             <span className="text-lg font-bold tracking-tight bg-gradient-to-r from-emerald-900 to-amber-700 bg-clip-text text-transparent">
               Dir-Khir
             </span>
-            <span className="text-xs font-medium text-amber-700">الإخاء والتضامن</span>
+            <span className="text-xs font-medium text-amber-700">Brotherhood & Solidarity</span>
           </div>
           <span className="sm:hidden text-lg font-bold bg-gradient-to-r from-emerald-900 to-amber-700 bg-clip-text text-transparent">
             Dir-Khir
@@ -106,7 +106,7 @@ export function Navbar() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-lg font-bold text-emerald-900">Dir-Khir</span>
-                  <span className="text-xs text-amber-700">الإخاء والتضامن</span>
+                  <span className="text-xs text-amber-700">Brotherhood & Solidarity</span>
                 </div>
               </Link>
 

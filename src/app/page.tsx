@@ -65,29 +65,29 @@ export default async function HomePage({
   const activeNeeds = allNeeds.filter((need) => !need.isResolved)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-amber-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-amber-50">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
+      {/* Hero Section with Background Image */}
+      <section className="hero-bg-image">
+        <div className="hero-content">
           <div className="text-center space-y-6">
-            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
               <MapPin className="h-4 w-4" />
-              نشط عبر المغرب
+              Active Across Morocco
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-r from-emerald-900 via-amber-800 to-emerald-700 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
               Connectez-vous & Aidez Ensemble
             </h1>
             
-            <p className="text-xl text-emerald-700 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/95 max-w-2xl mx-auto leading-relaxed drop-shadow">
               Une plateforme communautaire où les voisins s'entraident. Partagez des besoins, offrez de l'aide, et faites la différence dans votre communauté.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
               <Link href={session ? "/create" : "/register"} className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto gap-3 bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700 shadow-lg hover:shadow-xl transition-all">
+                <Button size="lg" className="w-full sm:w-auto gap-3 bg-white text-emerald-800 hover:bg-gray-100 shadow-xl hover:shadow-2xl transition-all">
                   <span>Partager un Besoin</span>
                   <ArrowRight className="h-5 w-5" />
                 </Button>
@@ -95,7 +95,7 @@ export default async function HomePage({
               
               {session && (
                 <Link href="/mon-espace" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 border-2 border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50 transition-colors text-emerald-900">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 border-2 border-white/50 hover:border-white hover:bg-white/10 transition-colors text-white">
                     <Target className="h-5 w-5" />
                     Tableau de Bord
                   </Button>

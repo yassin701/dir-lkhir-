@@ -55,34 +55,34 @@ export default function NeedCard({ need, session }: NeedCardProps) {
   };
 
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-gray-200 hover:border-blue-300">
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-[1.02] border border-emerald-200 hover:border-emerald-400 bg-gradient-to-br from-white to-emerald-50/30">
       <Link href={`/needs/${need.id}`}>
-        <CardHeader className="pb-4 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-indigo-50/50 transition-colors p-6">
+        <CardHeader className="pb-4 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-amber-50 transition-colors p-6">
           <div className="space-y-3">
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1 space-y-2">
-                <CardTitle className="line-clamp-2 text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                <CardTitle className="line-clamp-2 text-xl font-bold text-emerald-900 group-hover:text-emerald-700 transition-colors">
                   {need.title}
                 </CardTitle>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-emerald-700">
                   <User className="h-4 w-4" />
                   <span className="font-medium">{need.author?.name}</span>
                 </div>
               </div>
-              <Badge className="bg-blue-100 text-blue-800 border-0 font-medium px-3 py-1">
+              <Badge className="bg-emerald-100 text-emerald-900 border-0 font-medium px-3 py-1">
                 <span className="mr-1">{categoryEmojis[need.category] || "🤝"}</span>
                 {need.category.charAt(0).toUpperCase() + need.category.slice(1)}
               </Badge>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-emerald-700">
               <div className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-gray-400" />
+                <MapPin className="h-4 w-4 text-emerald-500" />
                 <span className="font-medium">{need.city}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-gray-400" />
-                <span>Recently</span>
+                <Calendar className="h-4 w-4 text-emerald-500" />
+                <span>Récemment</span>
               </div>
             </div>
           </div>
@@ -99,19 +99,19 @@ export default function NeedCard({ need, session }: NeedCardProps) {
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-green-600" />
+                <div className="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                  <Phone className="h-5 w-5 text-emerald-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">WhatsApp Contact</p>
-                  <p className="text-xs text-gray-600">Click to send a message</p>
+                  <p className="text-sm font-medium text-emerald-900">Contact WhatsApp</p>
+                  <p className="text-xs text-emerald-700">Cliquez pour envoyer un message</p>
                 </div>
               </div>
               <a
                 href={`https://wa.me/${need.phoneWhatsApp.replace(/\D/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700 transition-colors shadow-sm hover:shadow-md"
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors shadow-sm hover:shadow-md"
               >
                 <Phone className="h-4 w-4" />
                 Message
@@ -121,14 +121,14 @@ export default function NeedCard({ need, session }: NeedCardProps) {
         )}
 
         {/* Stats & Actions */}
-        <div className="flex items-center justify-between pt-4 border-t">
+        <div className="flex items-center justify-between pt-4 border-t border-emerald-200">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-gray-500" />
+              <Users className="h-4 w-4 text-emerald-600" />
               <div className="text-sm">
-                <span className="font-bold text-gray-900">{need.volunteers?.length || 0}</span>
-                <span className="text-gray-600 ml-1">
-                  {need.volunteers?.length === 1 ? "person helping" : "people helping"}
+                <span className="font-bold text-emerald-900">{need.volunteers?.length || 0}</span>
+                <span className="text-emerald-700 ml-1">
+                  {need.volunteers?.length === 1 ? "personne aide" : "personnes aident"}
                 </span>
               </div>
             </div>
@@ -139,24 +139,24 @@ export default function NeedCard({ need, session }: NeedCardProps) {
             disabled={isPending}
             variant={hasVolunteered ? "outline" : "default"}
             className={`gap-2 ${hasVolunteered 
-              ? "border-red-200 text-red-700 hover:bg-red-50 hover:text-red-800" 
-              : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg"
+              ? "border-red-500 text-red-700 hover:bg-red-50 hover:text-red-800" 
+              : "bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700 shadow-md hover:shadow-lg"
             }`}
           >
             {isPending ? (
               <>
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
-                Loading...
+                Chargement...
               </>
             ) : hasVolunteered ? (
               <>
                 <Heart className="h-4 w-4 fill-current" />
-                Remove Help
+                Retirer l'aide
               </>
             ) : (
               <>
                 <Heart className="h-4 w-4" />
-                I Can Help
+                Je Peux Aider
               </>
             )}
           </Button>

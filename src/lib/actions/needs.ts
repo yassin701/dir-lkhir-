@@ -40,13 +40,13 @@ export async function createNeed(data: {
 }
 
 export async function volunteerForNeed(needId: string) {
-  const session = await getServerSession();
-  
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
-
   try {
+    const session = await getServerSession();
+    
+    if (!session?.user?.id) {
+      return { success: false, error: "Not authenticated" };
+    }
+
     // Check if already volunteered
     const existing = await db.query.needVolunteers.findFirst({
       where: and(
@@ -75,18 +75,18 @@ export async function volunteerForNeed(needId: string) {
     return { success: true };
   } catch (error) {
     console.error("Error volunteering:", error);
-    return { success: false, error: "Failed to volunteer" };
+    return { success: false, error: "Failed to volunteer. Please try again." };
   }
 }
 
 export async function unvolunteerForNeed(needId: string) {
-  const session = await getServerSession();
-  
-  if (!session?.user?.id) {
-    redirect("/login");
-  }
-
   try {
+    const session = await getServerSession();
+    
+    if (!session?.user?.id) {
+      return { success: false, error: "Not authenticated" };
+    }
+
     // Remove volunteer
     await db.delete(needVolunteers).where(
       and(
@@ -104,7 +104,7 @@ export async function unvolunteerForNeed(needId: string) {
     return { success: true };
   } catch (error) {
     console.error("Error unvolunteering:", error);
-    return { success: false, error: "Failed to unvolunteer" };
+    return { success: false, error: "Failed to remove volunteering. Please try again." };
   }
 }
 

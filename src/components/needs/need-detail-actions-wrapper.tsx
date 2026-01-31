@@ -60,7 +60,7 @@ export default function NeedDetailActionsWrapper({
 
       const result = await volunteerForNeed(needId);
       if (result.success) {
-        toast.success("Vous participez maintenant à ce besoin ! 🎉");
+        toast.success("You are now participating in this need! 🎉");
         // No need to refresh - UI already updated
       } else {
         // Revert optimistic update on error
@@ -95,7 +95,7 @@ export default function NeedDetailActionsWrapper({
     startTransition(async () => {
       const result = await resolveNeed(needId);
       if (result.success) {
-        toast.success("Ce besoin a été marqué comme résolu !");
+        toast.success("This need has been marked as resolved!");
         router.refresh();
       } else {
         toast.error(result.error || "Une erreur est survenue");
@@ -107,7 +107,7 @@ export default function NeedDetailActionsWrapper({
     startTransition(async () => {
       const result = await deleteNeed(needId);
       if (result.success) {
-        toast.success("Besoin supprimé");
+        toast.success("Need deleted");
         router.push("/");
       } else {
         toast.error(result.error || "Une erreur est survenue");
@@ -130,7 +130,7 @@ export default function NeedDetailActionsWrapper({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Users className="h-5 w-5 text-primary" />
-            <h3 className="text-lg font-semibold">Volontaires</h3>
+            <h3 className="text-lg font-semibold">Volunteers</h3>
           </div>
           <Badge variant="secondary" className="animate-pulse-soft">
             {volunteerCount} {volunteerCount === 1 ? "personne" : "personnes"}
@@ -166,7 +166,7 @@ export default function NeedDetailActionsWrapper({
                 onClick={handleResolve}
               >
                 <CheckCircle className="h-4 w-4" />
-                Marquer résolu
+                Mark Resolved
               </Button>
             )}
 
@@ -190,7 +190,7 @@ export default function NeedDetailActionsWrapper({
           <div className="rounded-lg bg-background p-6 shadow-lg">
             <h3 className="text-lg font-semibold">Confirmer la suppression</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Êtes-vous sûr de vouloir supprimer ce besoin ? Cette action est irréversible.
+              Are you sure you want to delete this need? This action is irreversible.
             </p>
             <div className="mt-6 flex gap-3">
               <Button
@@ -219,9 +219,9 @@ export default function NeedDetailActionsWrapper({
       {showResolveDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div className="rounded-lg bg-background p-6 shadow-lg">
-            <h3 className="text-lg font-semibold">Marquer comme résolu</h3>
+            <h3 className="text-lg font-semibold">Mark as Resolved</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Confirmez-vous que ce besoin a été résolu ?
+              Confirm that this need has been resolved?
             </p>
             <div className="mt-6 flex gap-3">
               <Button
@@ -238,7 +238,7 @@ export default function NeedDetailActionsWrapper({
                 }}
                 disabled={isPending}
               >
-                Oui, c'est résolu
+                Yes, it's resolved
               </Button>
             </div>
           </div>

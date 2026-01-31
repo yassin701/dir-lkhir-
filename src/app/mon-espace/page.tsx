@@ -8,10 +8,10 @@ import { needs, needVolunteers } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { MapPin, Users, Trash2 } from "lucide-react";
+import { MapPin, Users, CheckCircle, Calendar } from "lucide-react";
 import DashboardActions from "@/components/dashboard/dashboard-actions";
 import { EmptyMyNeeds, EmptyVolunteer } from "@/components/empty-states";
-
+import { Plus } from "lucide-react";
 export default async function DashboardPage() {
   const session = await getServerSession();
 
@@ -55,92 +55,118 @@ export default async function DashboardPage() {
   const resolvedUserNeeds = userNeeds.filter((n) => n.isResolved);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pt-20">
       <Navbar />
 
-      <main className="px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl space-y-10">
+      <main className="px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl space-y-8">
           {/* Header */}
-          <div className="flex items-center justify-between gap-4 border-b-2 border-primary/10 pb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200 pb-8">
             <div>
-              <h1 className="text-4xl font-bold text-primary">Mon Espace</h1>
-              <p className="text-lg text-secondary font-semibold mt-2">Bienvenue, {session.user.name}! 👋</p>
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">My Dashboard</h1>
+              <p className="text-lg text-gray-600 mt-2">Welcome back, {session.user.name}! 👋</p>
             </div>
-            <Link href="/proposer-un-besoin">
-              <Button size="lg" className="gap-2 shadow-lg">+ Nouveau besoin</Button>
+            <Link href="/create-need">
+              <Button size="lg" className="gap-2 shadow-md hover:shadow-lg transition-shadow bg-gradient-to-r from-blue-600 to-indigo-600">
+                <Plus className="h-5 w-5" />
+                New Need
+              </Button>
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="grid gap-5 sm:grid-cols-3">
-            <Card className="border-primary/20 hover:border-primary/40 bg-linear-to-br from-primary/8 to-transparent">
+          <div className="grid gap-6 sm:grid-cols-3">
+            <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-bold uppercase tracking-wider text-primary">Mes demandes</CardTitle>
+                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-gray-500">My Requests</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-4xl font-bold text-primary">{activeUserNeeds.length}</div>
-                <p className="text-sm text-secondary font-semibold mt-1">Demandes actives</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-secondary/20 hover:border-secondary/40 bg-linear-to-br from-secondary/8 to-transparent">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-bold uppercase tracking-wider text-secondary">Mes engagements</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-bold text-secondary">{activeVolunteeredNeeds.length}</div>
-                <p className="text-sm text-primary font-semibold mt-1">Besoins où j'aide</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-accent/20 hover:border-accent/40 bg-linear-to-br from-accent/8 to-transparent">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-bold uppercase tracking-wider text-accent">Complétés</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-4xl font-bold text-accent">
-                  {resolvedUserNeeds.length + resolvedVolunteeredNeeds.length}
+                <div className="flex items-baseline gap-2">
+                  <div className="text-3xl font-bold text-gray-900">{activeUserNeeds.length}</div>
+                  <span className="text-sm text-gray-500">active</span>
                 </div>
-                <p className="text-sm text-primary font-semibold mt-1">Tâches résolues</p>
+                <p className="text-sm text-gray-600 mt-1">Needs you've created</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-gray-500">My Commitments</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-baseline gap-2">
+                  <div className="text-3xl font-bold text-gray-900">{activeVolunteeredNeeds.length}</div>
+                  <span className="text-sm text-gray-500">active</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-1">Needs you're helping with</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold uppercase tracking-wide text-gray-500">Completed</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-baseline gap-2">
+                  <div className="text-3xl font-bold text-gray-900">
+                    {resolvedUserNeeds.length + resolvedVolunteeredNeeds.length}
+                  </div>
+                  <span className="text-sm text-gray-500">total</span>
+                </div>
+                <p className="text-sm text-gray-600 mt-1">Successfully resolved</p>
               </CardContent>
             </Card>
           </div>
 
           {/* My Requests */}
-          <div className="space-y-6">
-            <div className="border-b-2 border-primary/10 pb-4">
-              <h2 className="text-3xl font-bold text-primary">Mes demandes</h2>
-              <p className="text-secondary font-semibold mt-2">Les besoins que j'ai publié</p>
+          <section className="space-y-6">
+            <div className="border-b border-gray-200 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-1 bg-blue-600 rounded-full"></div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">My Requests</h2>
+                  <p className="text-gray-600 mt-1">Needs I've published</p>
+                </div>
+              </div>
             </div>
 
             {activeUserNeeds.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {activeUserNeeds.map((need) => (
-                  <Card key={need.id} className="overflow-hidden border-primary/20 hover:border-primary/40 transition-all">
-                    <CardHeader className="bg-linear-to-r from-primary/5 to-secondary/5 pb-3">
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1">
-                          <CardTitle className="line-clamp-2 text-lg text-primary">{need.title}</CardTitle>
-                          <CardDescription className="mt-2 flex items-center gap-2 text-secondary font-semibold">
-                            <MapPin className="h-4 w-4" />
-                            {need.city}
-                          </CardDescription>
+                  <Card key={need.id} className="group hover:shadow-lg transition-all duration-300 border hover:border-blue-200">
+                    <CardHeader className="pb-4">
+                      <div className="flex items-start justify-between">
+                        <div className="space-y-2">
+                          <CardTitle className="text-lg font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                            {need.title}
+                          </CardTitle>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="h-4 w-4 text-gray-400" />
+                            <CardDescription className="text-sm font-medium text-gray-700">
+                              {need.city}
+                            </CardDescription>
+                          </div>
                         </div>
-                        <Badge variant="default">{need.category}</Badge>
+                        <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200">
+                          {need.category}
+                        </Badge>
                       </div>
                     </CardHeader>
 
-                    <CardContent className="space-y-4 pt-4">
-                      <p className="line-clamp-2 text-sm text-muted-foreground">
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-gray-600 line-clamp-3">
                         {need.description}
                       </p>
 
-                      <div className="flex items-center gap-2 text-sm font-semibold text-secondary">
-                        <Users className="h-4 w-4" />
-                        <span>{need.volunteers.length} volontaire{need.volunteers.length !== 1 ? 's' : ''}</span>
+                      <div className="flex items-center justify-between pt-4 border-t">
+                        <div className="flex items-center gap-2">
+                          <Users className="h-4 w-4 text-gray-500" />
+                          <span className="text-sm font-medium text-gray-700">
+                            {need.volunteers.length} volunteer{need.volunteers.length !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                        <DashboardActions needId={need.id} isOwner={true} />
                       </div>
-
-                      <DashboardActions needId={need.id} isOwner={true} />
                     </CardContent>
                   </Card>
                 ))}
@@ -148,37 +174,49 @@ export default async function DashboardPage() {
             ) : (
               <EmptyMyNeeds />
             )}
-          </div>
+          </section>
 
           {/* My Volunteering */}
-          <div className="space-y-6">
-            <div className="border-b-2 border-secondary/10 pb-4">
-              <h2 className="text-3xl font-bold text-secondary">Mes engagements</h2>
-              <p className="text-primary font-semibold mt-2">Les besoins auxquels je participe</p>
+          <section className="space-y-6">
+            <div className="border-b border-gray-200 pb-4">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-1 bg-green-600 rounded-full"></div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">My Commitments</h2>
+                  <p className="text-gray-600 mt-1">Needs I'm participating in</p>
+                </div>
+              </div>
             </div>
 
             {activeVolunteeredNeeds.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {activeVolunteeredNeeds.map((need) => (
-                  <Card key={need?.id} className="overflow-hidden border-secondary/20 hover:border-secondary/40 transition-all">
-                    <CardHeader className="bg-linear-to-r from-secondary/5 to-primary/5 pb-3">
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1">
-                          <CardTitle className="line-clamp-2 text-lg text-secondary">{need?.title}</CardTitle>
-                          <CardDescription className="mt-2 text-primary font-semibold">
-                            Publié par {need?.author?.name}
-                          </CardDescription>
+                  <Card key={need?.id} className="group hover:shadow-lg transition-all duration-300 border hover:border-green-200">
+                    <CardHeader className="pb-4">
+                      <div className="space-y-3">
+                        <div className="flex items-start justify-between">
+                          <CardTitle className="text-lg font-semibold text-gray-900 group-hover:text-green-700 transition-colors">
+                            {need?.title}
+                          </CardTitle>
+                          <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
+                            {need?.category}
+                          </Badge>
                         </div>
-                        <Badge variant="secondary">{need?.category}</Badge>
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Calendar className="h-4 w-4" />
+                          <span>Posted by {need?.author?.name}</span>
+                        </div>
                       </div>
                     </CardHeader>
 
-                    <CardContent className="space-y-4 pt-4">
-                      <p className="line-clamp-2 text-sm text-muted-foreground">
+                    <CardContent className="space-y-4">
+                      <p className="text-sm text-gray-600 line-clamp-3">
                         {need?.description}
                       </p>
 
-                      <DashboardActions needId={need?.id || ""} isOwner={false} />
+                      <div className="pt-4 border-t">
+                        <DashboardActions needId={need?.id || ""} isOwner={false} />
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -186,51 +224,76 @@ export default async function DashboardPage() {
             ) : (
               <EmptyVolunteer />
             )}
-          </div>
+          </section>
 
-          {/* Resolved Requests */}
+          {/* Completed Tasks */}
           {(resolvedUserNeeds.length > 0 || resolvedVolunteeredNeeds.length > 0) && (
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-accent border-b-2 border-accent/10 pb-4">✓ Complétés</h2>
-
-              {resolvedUserNeeds.length > 0 && (
-                <div className="space-y-3">
-                  <h3 className="text-xl font-bold text-primary uppercase tracking-wider">Mes demandes résolues</h3>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {resolvedUserNeeds.map((need) => (
-                      <Card key={need.id} className="opacity-75">
-                        <CardContent className="pt-6">
-                          <Badge variant="outline" className="mb-2">
-                            ✓ Résolu
-                          </Badge>
-                          <h3 className="font-semibold">{need.title}</h3>
-                          <p className="text-xs text-muted-foreground">{need.volunteers.length} volontaires</p>
-                        </CardContent>
-                      </Card>
-                    ))}
+            <section className="space-y-6">
+              <div className="border-b border-gray-200 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-8 w-1 bg-purple-600 rounded-full"></div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Completed Tasks</h2>
+                    <p className="text-gray-600 mt-1">Successfully resolved needs</p>
                   </div>
                 </div>
-              )}
+              </div>
 
-              {resolvedVolunteeredNeeds.length > 0 && (
-                <div className="space-y-2">
-                  <h3 className="font-semibold">Mes engagements résolus</h3>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {resolvedVolunteeredNeeds.map((need) => (
-                      <Card key={need?.id} className="opacity-75">
-                        <CardContent className="pt-6">
-                          <Badge variant="outline" className="mb-2">
-                            ✓ Résolu
-                          </Badge>
-                          <h3 className="font-semibold">{need?.title}</h3>
-                          <p className="text-xs text-muted-foreground">Publié par {need?.author?.name}</p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+              <div className="grid gap-6 md:grid-cols-2">
+                {resolvedUserNeeds.map((need) => (
+                  <Card key={need.id} className="bg-gradient-to-br from-purple-50 to-white border-purple-200">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0">
+                          <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
+                            <CheckCircle className="h-6 w-6 text-purple-600" />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="outline" className="border-purple-300 text-purple-700">
+                              ✓ Resolved
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs">
+                              {need.category}
+                            </Badge>
+                          </div>
+                          <h3 className="font-semibold text-gray-900 mb-1">{need.title}</h3>
+                          <p className="text-sm text-gray-600">
+                            Helped by {need.volunteers.length} volunteer{need.volunteers.length !== 1 ? 's' : ''}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+
+                {resolvedVolunteeredNeeds.map((need) => (
+                  <Card key={need?.id} className="bg-gradient-to-br from-gray-50 to-white border-gray-200">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0">
+                          <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                            <CheckCircle className="h-6 w-6 text-gray-600" />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="outline" className="border-gray-300 text-gray-700">
+                              ✓ Completed
+                            </Badge>
+                          </div>
+                          <h3 className="font-semibold text-gray-900 mb-1">{need?.title}</h3>
+                          <p className="text-sm text-gray-600">
+                            Posted by {need?.author?.name}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
           )}
         </div>
       </main>

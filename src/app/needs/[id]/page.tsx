@@ -47,23 +47,23 @@ export default async function NeedDetailPage({ params }: { params: Promise<{ id:
   };
 
   const categoryLabels: Record<string, string> = {
-    education: "Éducation",
-    cleaning: "Nettoyage",
-    financial: "Aide financière",
-    health: "Santé",
-    food: "Nourriture",
-    other: "Autre",
+    education: "Education",
+    cleaning: "Cleaning",
+    financial: "Financial Aid",
+    health: "Health",
+    food: "Food",
+    other: "Other",
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-20">
       <Navbar />
 
       <main className="px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl space-y-8">
           {/* Back Button */}
           <Link href="/" className="inline-flex text-primary hover:opacity-75 font-semibold transition-opacity gap-1">
-            ← Retour à la liste
+            ← Back to list
           </Link>
 
           {/* Main Card */}
@@ -79,7 +79,7 @@ export default async function NeedDetailPage({ params }: { params: Promise<{ id:
                     <p className="mt-3 text-lg text-muted-foreground leading-relaxed">{need.description}</p>
                   </div>
                   {need.isResolved && (
-                    <Badge className="bg-green-100 text-green-800 border-green-300">✓ Résolu</Badge>
+                    <Badge className="bg-green-100 text-green-800 border-green-300">✓ Resolved</Badge>
                   )}
                 </div>
 
@@ -122,7 +122,7 @@ export default async function NeedDetailPage({ params }: { params: Promise<{ id:
                       className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
                     >
                       <Phone className="h-4 w-4" />
-                      Contacter sur WhatsApp
+                      Contact on WhatsApp
                     </a>
                   )}
                 </div>
@@ -133,7 +133,7 @@ export default async function NeedDetailPage({ params }: { params: Promise<{ id:
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Users className="h-5 w-5 text-primary" />
-                    <h3 className="text-lg font-semibold">Volontaires qui aident</h3>
+                    <h3 className="text-lg font-semibold">Volunteers Helping</h3>
                   </div>
                 </div>
 
@@ -177,8 +177,8 @@ export default async function NeedDetailPage({ params }: { params: Promise<{ id:
 
           {/* Similar Needs */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Autres besoins</h2>
-            <p className="text-muted-foreground">Découvrez d'autres besoins similaires</p>
+            <h2 className="text-2xl font-bold">Other Needs</h2>
+            <p className="text-muted-foreground">Discover other similar needs</p>
           </div>
         </div>
       </main>

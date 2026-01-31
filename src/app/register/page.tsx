@@ -10,23 +10,23 @@ export const metadata: Metadata = {
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-amber-50 flex flex-col pt-20">
       {/* Navigation Bar */}
-      <header className="w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm">
+      <header className="w-full border-b border-emerald-200 bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link 
             href="/" 
-            className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
+            className="flex items-center gap-2 text-emerald-700 hover:text-emerald-900 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span className="font-medium">Back to Home</span>
+            <span className="font-medium">Retour à l'accueil</span>
           </Link>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-700 to-amber-600 flex items-center justify-center">
               <Heart className="h-4 w-4 text-white" />
             </div>
-            <span className="font-bold bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
-              Community Aid
+            <span className="font-bold bg-gradient-to-r from-emerald-900 to-amber-700 bg-clip-text text-transparent">
+              Dir-Khir
             </span>
           </div>
         </div>
@@ -39,11 +39,11 @@ export default function SignUpPage() {
             {/* Left Side - Welcome Message */}
             <div className="space-y-6">
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-blue-700 bg-clip-text text-transparent">
-                  Join Our Community
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-emerald-900 to-amber-700 bg-clip-text text-transparent">
+                  Rejoignez Notre Communauté
                 </h1>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Become part of a network where neighbors help neighbors. Create your account to share needs or offer help in your community.
+                <p className="text-lg text-emerald-700 leading-relaxed">
+                  Devenez membre d'un réseau où les voisins s'entraident. Créez votre compte pour partager des besoins ou offrir de l'aide dans votre communauté.
                 </p>
               </div>
 

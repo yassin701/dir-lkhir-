@@ -26,7 +26,7 @@ export default function CreateHelpRequestPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background pt-20">
+    <div className="flex min-h-screen flex-col bg-gradient-to-b from-emerald-50 via-white to-amber-50 pt-20">
       <Navbar />
       <main className="flex flex-1 items-start justify-center px-4 py-12">
         <CreateNeedForm />

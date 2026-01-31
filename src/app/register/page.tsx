@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-amber-50 flex flex-col pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-amber-50 flex flex-col ">
       {/* Navigation Bar */}
       <header className="w-full border-b border-emerald-200 bg-white/80 backdrop-blur-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">

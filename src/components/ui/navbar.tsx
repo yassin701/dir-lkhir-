@@ -62,7 +62,7 @@ export function Navbar() {
                 </Button>
               </Link>
               <Link href="/mon-espace">
-                <Button variant="ghost" className="gap-2 text-sm font-medium text-emerald-900 hover:text-emerald-700 hover:bg-emerald-50">
+                <Button variant="ghost" className="gap-2 text-sm font-medium text-gray-900 hover:text-blue-700 hover:bg-blue-50">
                   <BarChart3 className="h-4 w-4" />
                   Tableau de Bord
                 </Button>
@@ -71,14 +71,36 @@ export function Navbar() {
           )}
 
           {isLoggedIn ? (
-            <Button
-              variant="ghost"
-              className="gap-2 text-sm font-medium text-emerald-900 hover:text-red-600 hover:bg-red-50"
-              onClick={handleLogout}
-            >
-              <LogOut className="h-4 w-4" />
-              Déconnexion
-            </Button>
+            <div className="flex items-center gap-3">
+              {/* User Info */}
+              <div className="hidden sm:flex items-center gap-2 mr-4">
+                {session?.user?.image ? (
+                  <img 
+                    src={session.user.image} 
+                    alt={session.user.name || 'User'} 
+                    className="h-8 w-8 rounded-full object-cover border-2 border-emerald-200"
+                  />
+                ) : (
+                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-700 to-amber-600 flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">
+                      {session.user.name?.[0]?.toUpperCase() || "U"}
+                    </span>
+                  </div>
+                )}
+                <span className="text-sm font-medium text-gray-700 hidden lg:block">
+                  {session.user.name}
+                </span>
+              </div>
+              
+              <Button
+                variant="ghost"
+                className="gap-2 text-sm font-medium text-emerald-900 hover:text-red-600 hover:bg-red-50"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4" />
+                Déconnexion
+              </Button>
+            </div>
           ) : (
             <Link href="/login">
               <Button className="gap-2 bg-gradient-to-r from-emerald-700 to-amber-600 hover:from-emerald-800 hover:to-amber-700 shadow-sm hover:shadow-md">
@@ -128,7 +150,7 @@ export function Navbar() {
                       </Button>
                     </Link>
                     <Link href="/mon-espace" onClick={() => setIsOpen(false)}>
-                      <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-emerald-900 hover:bg-emerald-50">
+                      <Button variant="ghost" className="w-full justify-start gap-3 text-base h-12 text-gray-900 hover:bg-blue-50">
                         <BarChart3 className="h-5 w-5" />
                         Tableau de Bord
                       </Button>

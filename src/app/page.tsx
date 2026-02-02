@@ -95,8 +95,8 @@ export default async function HomePage({
               
               {session && (
                 <Link href="/mon-espace" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 border-2 border-white/50 hover:border-white hover:bg-white/10 transition-colors text-white">
-                    <Target className="h-5 w-5" />
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 border-2 border-white/50 hover:border-white hover:bg-white/10 transition-colors text-gray-900 hover:text-white">
+                    <Target className="h-5 w-5 text-gray-900" />
                     Tableau de Bord
                   </Button>
                 </Link>
